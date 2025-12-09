@@ -20,8 +20,7 @@ spacy>=3.0.0
 nltk>=3.6.0
 
 # Clustering and visualization
-umap-learn>=0.5.0
-hdbscan>=0.8.0
+# Removed umap-learn and hdbscan which require llvmlite
 plotly>=5.0.0
 matplotlib>=3.4.0
 seaborn>=0.11.0

@@ -1,0 +1,62 @@
+# Document Processing and Classification System Configuration
+
+paths:
+  raw_data: "data/raw"
+  processed_data: "data/processed"
+  ocr_output: "data/ocr"
+  embeddings: "data/embeddings"
+  models: "models"
+
+ocr:
+  tesseract_path: "/usr/bin/tesseract"  # Update this for your system
+  language: "eng"
+  config: "--oem 3 --psm 6"
+  timeout: 30
+  dpi: 300
+
+text_processing:
+  min_text_length: 50
+  remove_stopwords: true
+  lemmatize: true
+  remove_numbers: true
+  remove_punctuation: true
+  min_word_length: 2
+
+embeddings:
+  model_name: "all-MiniLM-L6-v2"
+  batch_size: 32
+  device: "cpu"  # "cuda" for GPU
+  pooling: "mean"
+
+clustering:
+  default_method: "hdbscan"
+  min_cluster_size: 5
+  kmeans_n_clusters: 5
+  reduce_dimensions: true
+  reduction_method: "umap"
+  n_components: 50
+
+classification:
+  test_size: 0.2
+  random_state: 42
+  n_folds: 5
+  default_model: "random_forest"
+  bert:
+    model_name: "bert-base-uncased"
+    num_epochs: 3
+    batch_size: 16
+    learning_rate: 2e-5
+
+evaluation:
+  metrics:
+    - "accuracy"
+    - "f1_weighted"
+    - "precision_weighted"
+    - "recall_weighted"
+  save_reports: true
+  save_visualizations: true
+
+logging:
+  level: "INFO"
+  file: "logs/document_processing.log"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
